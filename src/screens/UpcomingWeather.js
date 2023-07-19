@@ -67,11 +67,13 @@ const UpcomingWeather = () => {
           source={require("../../assets/upcoming-background.png")}
           style={mainStyles.imageLayout}
         >
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.dt_txt}
-          />
+          <View style={mainStyles.screenWrapper}>
+            <FlatList
+              data={DATA}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.dt_txt}
+            />
+          </View>
         </ImageBackground>
       </View>
     </SafeAreaView>
