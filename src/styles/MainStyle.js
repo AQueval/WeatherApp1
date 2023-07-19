@@ -7,11 +7,13 @@ const mainStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "midnightblue",
+    backgroundColor: "#2A2A2A",
   },
   imageLayout: {
     flex: 1,
     paddingTop: 50,
+    paddingBottom: 10,
+    paddingHorizontal: 15,
   },
 });
 

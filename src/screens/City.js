@@ -10,7 +10,14 @@ import IconText from "../components/IconText";
 import mainStyles from "../styles/MainStyle";
 
 const City = () => {
-  const { name, cityName, countryName, riseSetWrapper } = styles;
+  const {
+    name,
+    cityName,
+    countryName,
+    riseSetWrapper,
+    populationText,
+    riseSetText,
+  } = styles;
 
   return (
     <SafeAreaView style={mainStyles.wrapper}>
@@ -21,10 +28,25 @@ const City = () => {
         >
           <Text style={[name, cityName]}>Paris</Text>
           <Text style={[name, countryName]}>France</Text>
-          <IconText iconName="users" textValue=" 2 106 091" />
+          <IconText
+            iconName="users"
+            iconColor="white"
+            textValue="2 106 091"
+            bodyTextStyle={populationText}
+          />
           <View style={riseSetWrapper}>
-            <IconText iconName="sunrise" textValue=" 06:54" />
-            <IconText iconName="sunset" textValue=" 21:31" />
+            <IconText
+              iconName="sunrise"
+              iconColor="white"
+              textValue="06:54"
+              bodyTextStyle={riseSetText}
+            />
+            <IconText
+              iconName="sunset"
+              iconColor="white"
+              textValue="21:31"
+              bodyTextStyle={riseSetText}
+            />
           </View>
         </ImageBackground>
       </View>
@@ -49,6 +71,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     flexDirection: "row",
     alignItems: "center",
+  },
+  populationText: {
+    color: "white",
+    fontSize: 20,
+  },
+  riseSetText: {
+    color: "white",
+    fontSize: 20,
   },
 });
 
