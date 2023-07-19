@@ -1,8 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 import City from "./src/screens/City";
-import mainStyles from "./src/styles/MainStyle";
 import CurrentWeather from "./src/screens/CurrentWeather";
+import UpcomingWeather from "./src/screens/UpcomingWeather";
+import mainStyles from "./src/styles/MainStyle";
 
 const App = () => {
   return (

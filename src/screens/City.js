@@ -26,27 +26,29 @@ const City = () => {
           source={require("../../assets/city-background.png")}
           style={mainStyles.imageLayout}
         >
-          <Text style={[name, cityName]}>Paris</Text>
-          <Text style={[name, countryName]}>France</Text>
-          <IconText
-            iconName="users"
-            iconColor="white"
-            textValue="2 106 091"
-            bodyTextStyle={populationText}
-          />
-          <View style={riseSetWrapper}>
+          <View style={mainStyles.screenWrapper}>
+            <Text style={[name, cityName]}>Paris</Text>
+            <Text style={[name, countryName]}>France</Text>
             <IconText
-              iconName="sunrise"
-              iconColor="white"
-              textValue="06:54"
-              bodyTextStyle={riseSetText}
+              iconName="users"
+              iconColor="black"
+              textValue="2 106 091"
+              bodyTextStyle={populationText}
             />
-            <IconText
-              iconName="sunset"
-              iconColor="white"
-              textValue="21:31"
-              bodyTextStyle={riseSetText}
-            />
+            <View style={riseSetWrapper}>
+              <IconText
+                iconName="sunrise"
+                iconColor="black"
+                textValue="06:54"
+                bodyTextStyle={riseSetText}
+              />
+              <IconText
+                iconName="sunset"
+                iconColor="black"
+                textValue="21:31"
+                bodyTextStyle={riseSetText}
+              />
+            </View>
           </View>
         </ImageBackground>
       </View>
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     fontWeight: "bold",
-    color: "white",
+    color: "black",
   },
   cityName: {
     fontSize: 40,
@@ -73,11 +75,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   populationText: {
-    color: "white",
+    color: "black",
     fontSize: 20,
   },
   riseSetText: {
-    color: "white",
+    color: "black",
     fontSize: 20,
   },
 });

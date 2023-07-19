@@ -11,9 +11,14 @@ const mainStyles = StyleSheet.create({
   },
   imageLayout: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 30,
     paddingBottom: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
+  },
+  screenWrapper: {
+    backgroundColor: "#FFFFFF80",
+    borderRadius: 10,
+    padding: 10,
   },
 });
 

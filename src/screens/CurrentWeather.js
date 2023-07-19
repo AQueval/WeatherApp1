@@ -21,17 +21,19 @@ const CurrentWeather = () => {
           source={require("../../assets/current-background-2.jpg")}
           style={mainStyles.imageLayout}
         >
-          <Feather name="sun" size={80} color="black" style={mainIcon} />
-          <Text style={temp}>6</Text>
-          <Text style={feels}>Feels like 5</Text>
-          <RowText
-            textValue1="High: 8"
-            textValue2="Low: 6"
-            bodyTextStyle={highLow}
-          />
-          <View style={bodyWrapper}>
-            <Text style={description}>It's sunny</Text>
-            <Text style={message}>It's perfect t-shirt weather</Text>
+          <View style={mainStyles.screenWrapper}>
+            <Feather name="sun" size={80} color="black" style={mainIcon} />
+            <Text style={temp}>6</Text>
+            <Text style={feels}>Feels like 5</Text>
+            <RowText
+              textValue1="High: 8"
+              textValue2="Low: 6"
+              bodyTextStyle={highLow}
+            />
+            <View style={bodyWrapper}>
+              <Text style={description}>It's sunny</Text>
+              <Text style={message}>It's perfect t-shirt weather</Text>
+            </View>
           </View>
         </ImageBackground>
       </View>
