@@ -22,7 +22,7 @@ const CurrentWeather = () => {
           style={mainStyles.imageLayout}
         >
           <View style={mainStyles.screenWrapper}>
-            <Feather name="sun" size={80} color="black" style={mainIcon} />
+            <Feather name="sun" size={80} color="#000E2E" style={mainIcon} />
             <Text style={temp}>6</Text>
             <Text style={feels}>Feels like 5</Text>
             <RowText
@@ -48,13 +48,13 @@ const styles = StyleSheet.create({
   },
   temp: {
     fontSize: 48,
-    color: "black",
+    color: "#000E2E",
     justifyContent: "center",
     alignSelf: "center",
   },
   feels: {
     fontSize: 30,
-    color: "black",
+    color: "#000E2E",
     justifyContent: "center",
     alignSelf: "center",
   },
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   },
   highLow: {
     fontSize: 20,
-    color: "black",
+    color: "#000E2E",
   },
   bodyWrapper: {
     justifyContent: "flex-end",
@@ -71,11 +71,11 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 48,
-    color: "black",
+    color: "#000E2E",
   },
   message: {
     fontSize: 30,
-    color: "black",
+    color: "#000E2E",
   },
 });
 export default CurrentWeather;

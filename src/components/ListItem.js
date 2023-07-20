@@ -3,15 +3,17 @@ import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 const ListItem = (props) => {
-  const { dt_txt, min, max, condition } = props;
-  const { item, date, temp } = styles;
+  const { dt_txt, min, max } = props;
+  const { item, date, temp, tempMin, tempMax } = styles;
 
   return (
     <View style={item}>
-      <Feather name="sun" size={50} color="white" />
+      <Feather name="sun" size={50} color="#000E2E" />
       <Text style={date}>{dt_txt}</Text>
-      <Text style={temp}>{min}</Text>
-      <Text style={temp}>{max}</Text>
+      <View>
+        <Text style={[temp, tempMin]}>{min}</Text>
+        <Text style={[temp, tempMax]}>{max}</Text>
+      </View>
     </View>
   );
 };
@@ -24,16 +26,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    borderWidth: 5,
-    backgroundColor: "midnightblue",
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: "#FDF6EF",
   },
   temp: {
-    color: "white",
     fontSize: 20,
+    fontWeight: "bold",
+  },
+  tempMin: {
+    color: "#003ED0",
+  },
+  tempMax: {
+    color: "#DF1600",
   },
   date: {
-    color: "white",
-    fontSize: 15,
+    color: "#000E2E",
+    fontSize: 18,
   },
 });
 
