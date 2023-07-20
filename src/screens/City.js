@@ -31,20 +31,20 @@ const City = () => {
             <Text style={[name, countryName]}>France</Text>
             <IconText
               iconName="users"
-              iconColor="black"
+              iconColor="#000E2E"
               textValue="2 106 091"
               bodyTextStyle={populationText}
             />
             <View style={riseSetWrapper}>
               <IconText
                 iconName="sunrise"
-                iconColor="black"
+                iconColor="#000E2E"
                 textValue="06:54"
                 bodyTextStyle={riseSetText}
               />
               <IconText
                 iconName="sunset"
-                iconColor="black"
+                iconColor="#000E2E"
                 textValue="21:31"
                 bodyTextStyle={riseSetText}
               />
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: "center",
     fontWeight: "bold",
-    color: "black",
+    color: "#000E2E",
   },
   cityName: {
     fontSize: 40,
@@ -75,11 +75,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   populationText: {
-    color: "black",
+    color: "#000E2E",
     fontSize: 20,
   },
   riseSetText: {
-    color: "black",
+    color: "#000E2E",
     fontSize: 20,
   },
 });

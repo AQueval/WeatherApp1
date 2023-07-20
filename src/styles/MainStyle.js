@@ -11,12 +11,12 @@ const mainStyles = StyleSheet.create({
   },
   imageLayout: {
     flex: 1,
-    paddingTop: 30,
+    paddingTop: 15,
     paddingBottom: 10,
     paddingHorizontal: 10,
   },
   screenWrapper: {
-    backgroundColor: "#FFFFFF80",
+    backgroundColor: "#FDF6EF80",
     borderRadius: 10,
     padding: 10,
   },

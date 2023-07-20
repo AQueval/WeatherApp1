@@ -1,18 +1,15 @@
 import React from "react";
-import { View } from "react-native";
-import City from "./src/screens/City";
-import CurrentWeather from "./src/screens/CurrentWeather";
-import UpcomingWeather from "./src/screens/UpcomingWeather";
-import mainStyles from "./src/styles/MainStyle";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Tabs from "./src/components/Tabs";
+
+const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
-    <View style={mainStyles.container}>
-      <CurrentWeather />
-      {/*<UpcomingWeather />*/}
-      {/*<City />*/}
-      {/*<Test />*/}
-    </View>
+    <NavigationContainer>
+      <Tabs />
+    </NavigationContainer>
   );
 };
 
