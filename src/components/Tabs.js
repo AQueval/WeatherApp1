@@ -9,8 +9,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
-const Tabs = (props) => {
-  const {} = props;
+const Tabs = ({ weather }) => {
   const {} = styles;
 
   return (
@@ -30,7 +29,6 @@ const Tabs = (props) => {
     >
       <Tab.Screen
         name={"Current"}
-        component={CurrentWeather}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -40,7 +38,9 @@ const Tabs = (props) => {
             />
           ),
         }}
-      />
+      >
+        {() => <CurrentWeather weatherData={weather.list[0]} />}
+      </Tab.Screen>
       <Tab.Screen
         name={"Upcoming"}
         component={UpcomingWeather}
