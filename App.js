@@ -9,7 +9,7 @@ const App = () => {
   const { activityIndicatorStyle } = styles;
   const [loading, error, weather] = useGetWeather();
 
-  if (weather && weather.list) {
+  if (weather && weather.list && !loading) {
     return (
       <NavigationContainer>
         <Tabs weather={weather} />
@@ -19,10 +19,10 @@ const App = () => {
 
   return (
     <View style={activityIndicatorStyle}>
-      {loading ? (
-        <ActivityIndicator size={50} color={"#003ED0"} />
-      ) : (
+      {error ? (
         <ErrorItem />
+      ) : (
+        <ActivityIndicator size={50} color={"#003ED0"} />
       )}
     </View>
   );
