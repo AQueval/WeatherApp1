@@ -30,8 +30,7 @@ export const useGetWeather = () => {
         setError("Permission to access location was denied.");
       }
 
-      //get current location donne une erreur donc changé en last known pour avancer.
-      //get last known donne null donc valeur fixe pour avancer avant debug (erreur Xiaomi)
+      //get current location donne null donc valeur fixe pour avancer avant debug (erreur Xiaomi)
       /*let location = await Location.getCurrentPositionAsync({});*/
       /*let location = await Location.getLastKnownPositionAsync({});*/
       /*setLoading(location);*/
@@ -47,14 +46,14 @@ export const useGetWeather = () => {
   }, [lat, lon]);
 
   /*if (weather) {
-        console.log("Latitude : " + lat);
-        console.log("Longitude : " + lon);
-        console.log("Weather : " + weather);
-      } else {
-        console.log("No weather available.");
-      }
+                console.log("Latitude : " + lat);
+                console.log("Longitude : " + lon);
+                console.log("Weather : " + weather);
+              } else {
+                console.log("No weather available.");
+              }
 
-      console.log("API key : " + WEATHER_API_KEY);*/
+              console.log("API key : " + WEATHER_API_KEY);*/
 
   return [loading, error, weather];
 };
