@@ -8,16 +8,18 @@ import {
 } from "react-native";
 import IconText from "../components/IconText";
 import mainStyles from "../styles/MainStyle";
+import moment from "moment";
 
-const City = () => {
+const City = ({ weatherData }) => {
   const {
-    name,
+    nameStyle,
     cityName,
     countryName,
     riseSetWrapper,
     populationText,
     riseSetText,
   } = styles;
+  const { name, country, population, sunrise, sunset } = weatherData;
 
   return (
     <SafeAreaView style={mainStyles.wrapper}>
@@ -27,25 +29,25 @@ const City = () => {
           style={mainStyles.imageLayout}
         >
           <View style={mainStyles.screenWrapper}>
-            <Text style={[name, cityName]}>Paris</Text>
-            <Text style={[name, countryName]}>France</Text>
+            <Text style={[nameStyle, cityName]}>{name}</Text>
+            <Text style={[nameStyle, countryName]}>{country}</Text>
             <IconText
               iconName="users"
-              iconColor="black"
-              textValue="2 106 091"
+              iconColor="#000E2E"
+              textValue={population}
               bodyTextStyle={populationText}
             />
             <View style={riseSetWrapper}>
               <IconText
                 iconName="sunrise"
-                iconColor="black"
-                textValue="06:54"
+                iconColor="#000E2E"
+                textValue={moment(sunrise).format("HH:mm")}
                 bodyTextStyle={riseSetText}
               />
               <IconText
                 iconName="sunset"
-                iconColor="black"
-                textValue="21:31"
+                iconColor="#000E2E"
+                textValue={moment(sunset).format("HH:mm")}
                 bodyTextStyle={riseSetText}
               />
             </View>
@@ -57,11 +59,11 @@ const City = () => {
 };
 
 const styles = StyleSheet.create({
-  name: {
+  nameStyle: {
     justifyContent: "center",
     alignSelf: "center",
     fontWeight: "bold",
-    color: "black",
+    color: "#000E2E",
   },
   cityName: {
     fontSize: 40,
@@ -75,11 +77,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   populationText: {
-    color: "black",
+    color: "#000E2E",
     fontSize: 20,
   },
   riseSetText: {
-    color: "black",
+    color: "#000E2E",
     fontSize: 20,
   },
 });
