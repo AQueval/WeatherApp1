@@ -12,7 +12,7 @@ export const useGetWeather = () => {
   const fetchWeatherData = async () => {
     try {
       const res = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`,
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`,
       );
       const data = await res.json();
       setWeather(data);
@@ -47,14 +47,14 @@ export const useGetWeather = () => {
   }, [lat, lon]);
 
   /*if (weather) {
-      console.log("Latitude : " + lat);
-      console.log("Longitude : " + lon);
-      console.log("Weather : " + weather);
-    } else {
-      console.log("No weather available.");
-    }
+        console.log("Latitude : " + lat);
+        console.log("Longitude : " + lon);
+        console.log("Weather : " + weather);
+      } else {
+        console.log("No weather available.");
+      }
 
-    console.log("API key : " + WEATHER_API_KEY);*/
+      console.log("API key : " + WEATHER_API_KEY);*/
 
   return [loading, error, weather];
 };

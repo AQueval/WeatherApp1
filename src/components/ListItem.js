@@ -1,18 +1,22 @@
 import React from "react";
 import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { weatherType } from "../utilities/WeatherType";
+import moment from "moment";
 
 const ListItem = (props) => {
-  const { dt_txt, min, max } = props;
-  const { item, date, temp, tempMin, tempMax } = styles;
+  const { dt_txt, min, max, condition } = props;
+  const { item, date, temp, tempMin, tempMax, dateTextWrapper } = styles;
 
   return (
     <View style={item}>
-      <Feather name="sun" size={50} color="#000E2E" />
-      <Text style={date}>{dt_txt}</Text>
+      <Feather name={weatherType[condition].icon} size={50} color="#000E2E" />
+      <View style={dateTextWrapper}>
+        <Text style={date}>{moment(dt_txt).format("dddd")}</Text>
+        <Text style={date}>{moment(dt_txt).format("HH:mm:ss")}</Text>
+      </View>
       <View>
-        <Text style={[temp, tempMin]}>{min}</Text>
-        <Text style={[temp, tempMax]}>{max}</Text>
+        <Text style={temp}>{`${Math.round(min)}°C/${Math.round(max)}°C`}</Text>
       </View>
     </View>
   );
@@ -43,6 +47,9 @@ const styles = StyleSheet.create({
   date: {
     color: "#000E2E",
     fontSize: 18,
+  },
+  dateTextWrapper: {
+    flexDirection: "column",
   },
 });
 

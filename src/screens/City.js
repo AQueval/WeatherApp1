@@ -8,16 +8,18 @@ import {
 } from "react-native";
 import IconText from "../components/IconText";
 import mainStyles from "../styles/MainStyle";
+import moment from "moment";
 
-const City = () => {
+const City = ({ weatherData }) => {
   const {
-    name,
+    nameStyle,
     cityName,
     countryName,
     riseSetWrapper,
     populationText,
     riseSetText,
   } = styles;
+  const { name, country, population, sunrise, sunset } = weatherData;
 
   return (
     <SafeAreaView style={mainStyles.wrapper}>
@@ -27,25 +29,25 @@ const City = () => {
           style={mainStyles.imageLayout}
         >
           <View style={mainStyles.screenWrapper}>
-            <Text style={[name, cityName]}>Paris</Text>
-            <Text style={[name, countryName]}>France</Text>
+            <Text style={[nameStyle, cityName]}>{name}</Text>
+            <Text style={[nameStyle, countryName]}>{country}</Text>
             <IconText
               iconName="users"
               iconColor="#000E2E"
-              textValue="2 106 091"
+              textValue={population}
               bodyTextStyle={populationText}
             />
             <View style={riseSetWrapper}>
               <IconText
                 iconName="sunrise"
                 iconColor="#000E2E"
-                textValue="06:54"
+                textValue={moment(sunrise).format("HH:mm:ss")}
                 bodyTextStyle={riseSetText}
               />
               <IconText
                 iconName="sunset"
                 iconColor="#000E2E"
-                textValue="21:31"
+                textValue={moment(sunset).format("HH:mm:ss")}
                 bodyTextStyle={riseSetText}
               />
             </View>
@@ -57,7 +59,7 @@ const City = () => {
 };
 
 const styles = StyleSheet.create({
-  name: {
+  nameStyle: {
     justifyContent: "center",
     alignSelf: "center",
     fontWeight: "bold",

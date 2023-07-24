@@ -9,46 +9,7 @@ import {
 import ListItem from "../components/ListItem";
 import mainStyles from "../styles/MainStyle";
 
-const DATA = [
-  {
-    dt_txt: "2023-02-18\n12:00:00",
-    main: {
-      temp_max: 8.55,
-      temp_min: 7.55,
-    },
-    weather: [
-      {
-        main: "Clear",
-      },
-    ],
-  },
-  {
-    dt_txt: "2023-02-18\n15:00:00",
-    main: {
-      temp_max: 8.55,
-      temp_min: 7.55,
-    },
-    weather: [
-      {
-        main: "Clouds",
-      },
-    ],
-  },
-  {
-    dt_txt: "2023-02-18\n18:00:00",
-    main: {
-      temp_max: 8.55,
-      temp_min: 7.55,
-    },
-    weather: [
-      {
-        main: "Rain",
-      },
-    ],
-  },
-];
-
-const UpcomingWeather = () => {
+const UpcomingWeather = ({ weatherData }) => {
   const renderItem = ({ item }) => (
     <ListItem
       condition={item.weather[0].main}
@@ -57,7 +18,6 @@ const UpcomingWeather = () => {
       max={item.main.temp_max}
     />
   );
-
   const {} = styles;
 
   return (
@@ -69,7 +29,7 @@ const UpcomingWeather = () => {
         >
           <View style={mainStyles.screenWrapper}>
             <FlatList
-              data={DATA}
+              data={weatherData}
               renderItem={renderItem}
               keyExtractor={(item) => item.dt_txt}
             />

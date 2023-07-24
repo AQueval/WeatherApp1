@@ -40,24 +40,31 @@ const CurrentWeather = ({ weatherData }) => {
           source={require("../../assets/current-background-2.jpg")}
           style={mainStyles.imageLayout}
         >
-          <View style={mainStyles.screenWrapper}>
+          <View
+            style={[
+              mainStyles.screenWrapper,
+              {
+                backgroundColor: weatherType[weatherCondition].backgroundColor,
+              },
+            ]}
+          >
             <Feather
-              name={weatherType[weatherCondition.icon]}
+              name={weatherType[weatherCondition].icon}
               size={80}
-              color="#FDF6EF"
+              color="#000E2E"
               style={mainIcon}
             />
-            <Text style={tempStyle}>{temp}</Text>
-            <Text style={feels}>{`Feels like ${feels_like}`}</Text>
+            <Text style={tempStyle}>{temp}°C</Text>
+            <Text style={feels}>{`Feels like ${feels_like}`}°C</Text>
             <RowText
-              textValue1={`High: ${temp_max}`}
-              textValue2={`Low: ${temp_min}`}
+              textValue1={`High: ${temp_max}°C`}
+              textValue2={`Low: ${temp_min}°C`}
               bodyTextStyle={highLow}
             />
             <View style={bodyWrapper}>
               <Text style={description}>{weather[0].description}</Text>
               <Text style={message}>
-                {weatherType[weatherCondition.message]}
+                {weatherType[weatherCondition].message}
               </Text>
             </View>
           </View>
@@ -98,6 +105,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 48,
     color: "#000E2E",
+    textTransform: "capitalize",
   },
   message: {
     fontSize: 30,
