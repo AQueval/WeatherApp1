@@ -54,11 +54,13 @@ const CurrentWeather = ({ weatherData }) => {
               color="#000E2E"
               style={mainIcon}
             />
-            <Text style={tempStyle}>{temp}°C</Text>
-            <Text style={feels}>{`Feels like ${feels_like}`}°C</Text>
+            <Text style={tempStyle}>{Math.round(temp)}°C</Text>
+            <Text style={feels}>
+              {`Feels like ${Math.round(feels_like)}`}°C
+            </Text>
             <RowText
-              textValue1={`High: ${temp_max}°C`}
-              textValue2={`Low: ${temp_min}°C`}
+              textValue1={`High: ${Math.round(temp_max)}°C`}
+              textValue2={`Low: ${Math.round(temp_min)}°C`}
               bodyTextStyle={highLow}
             />
             <View style={bodyWrapper}>
