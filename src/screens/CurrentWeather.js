@@ -26,15 +26,10 @@ const CurrentWeather = ({ weatherData }) => {
     weather,
   } = weatherData;
 
-  const weatherCondition = weather[0].main;
+  const weatherCondition = weather[0]?.main;
 
   return (
-    <SafeAreaView
-      style={[
-        mainStyles.wrapper,
-        { backgroundColor: weatherType[weatherCondition].backgroundColor },
-      ]}
-    >
+    <SafeAreaView style={mainStyles.wrapper}>
       <View style={mainStyles.container}>
         <ImageBackground
           source={require("../../assets/current-background-2.jpg")}
@@ -44,12 +39,12 @@ const CurrentWeather = ({ weatherData }) => {
             style={[
               mainStyles.screenWrapper,
               {
-                backgroundColor: weatherType[weatherCondition].backgroundColor,
+                backgroundColor: weatherType[weatherCondition]?.backgroundColor,
               },
             ]}
           >
             <Feather
-              name={weatherType[weatherCondition].icon}
+              name={weatherType[weatherCondition]?.icon}
               size={80}
               color="#000E2E"
               style={mainIcon}
@@ -64,9 +59,9 @@ const CurrentWeather = ({ weatherData }) => {
               bodyTextStyle={highLow}
             />
             <View style={bodyWrapper}>
-              <Text style={description}>{weather[0].description}</Text>
+              <Text style={description}>{weather[0]?.description}</Text>
               <Text style={message}>
-                {weatherType[weatherCondition].message}
+                {weatherType[weatherCondition]?.message}
               </Text>
             </View>
           </View>

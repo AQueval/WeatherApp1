@@ -10,7 +10,7 @@ const ListItem = (props) => {
 
   return (
     <View style={item}>
-      <Feather name={weatherType[condition].icon} size={50} color="#000E2E" />
+      <Feather name={weatherType[condition]?.icon} size={50} color="#000E2E" />
       <View style={dateTextWrapper}>
         <Text style={date}>{moment(dt_txt).format("dddd")}</Text>
         <Text style={date}>{moment(dt_txt).format("HH:mm")}</Text>
