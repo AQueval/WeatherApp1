@@ -3,6 +3,7 @@ import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { weatherType } from "../utilities/WeatherType";
 import moment from "moment";
+import RowText from "./RowText";
 
 const ListItem = (props) => {
   const { dt_txt, min, max, condition } = props;
@@ -12,11 +13,18 @@ const ListItem = (props) => {
     <View style={item}>
       <Feather name={weatherType[condition]?.icon} size={50} color="#000E2E" />
       <View style={dateTextWrapper}>
-        <Text style={date}>{moment(dt_txt).format("dddd")}</Text>
+        {/*<Text style={date}>{moment(dt_txt).format("dddd")}</Text>*/}
         <Text style={date}>{moment(dt_txt).format("HH:mm")}</Text>
       </View>
       <View>
-        <Text style={temp}>{`${Math.round(min)}°C/${Math.round(max)}°C`}</Text>
+        <RowText
+          textValue1={`${Math.round(min)}°C`}
+          separatorValue={" / "}
+          textValue2={`${Math.round(max)}°C`}
+          text1Style={[temp, tempMin]}
+          separatorStyle={temp}
+          text2Style={[temp, tempMax]}
+        />
       </View>
     </View>
   );

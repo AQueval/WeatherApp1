@@ -55,8 +55,11 @@ const CurrentWeather = ({ weatherData }) => {
             </Text>
             <RowText
               textValue1={`High: ${Math.round(temp_max)}°C`}
+              separatorValue={""}
               textValue2={`Low: ${Math.round(temp_min)}°C`}
-              bodyTextStyle={highLow}
+              text1Style={highLow}
+              separatorStyle={highLow}
+              text2Style={highLow}
             />
             <View style={bodyWrapper}>
               <Text style={description}>{weather[0]?.description}</Text>
@@ -102,7 +105,6 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 48,
     color: "#000E2E",
-    textTransform: "capitalize",
   },
   message: {
     fontSize: 30,
