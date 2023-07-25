@@ -26,34 +26,19 @@ export const useGetWeather = () => {
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "Granted.") {
+
+      if (status !== "granted") {
         setError("Permission to access location was denied.");
+        return;
       }
 
-      //get current location donne null donc valeur fixe pour avancer avant debug (erreur Xiaomi)
-      /*let location = await Location.getCurrentPositionAsync({});*/
-      /*let location = await Location.getLastKnownPositionAsync({});*/
-      /*setLoading(location);*/
-      let location = {
-        latitude: "45.750000",
-        longitude: "4.850000",
-      };
-      setLat(location.latitude);
-      setLon(location.longitude);
+      let location = await Location.getCurrentPositionAsync({});
+
+      setLat(location.coords.latitude);
+      setLon(location.coords.longitude);
       await fetchWeatherData();
-      //setLoading(false);
     })();
   }, [lat, lon]);
-
-  /*if (weather) {
-                console.log("Latitude : " + lat);
-                console.log("Longitude : " + lon);
-                console.log("Weather : " + weather);
-              } else {
-                console.log("No weather available.");
-              }
-
-              console.log("API key : " + WEATHER_API_KEY);*/
 
   return [loading, error, weather];
 };
