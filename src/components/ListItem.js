@@ -7,15 +7,12 @@ import RowText from "./RowText";
 
 const ListItem = (props) => {
   const { dt_txt, min, max, condition } = props;
-  const { item, date, temp, tempMin, tempMax, dateTextWrapper } = styles;
+  const { item, timeStyle, temp, tempMin, tempMax } = styles;
 
   return (
     <View style={item}>
       <Feather name={weatherType[condition]?.icon} size={50} color="#000E2E" />
-      <View style={dateTextWrapper}>
-        {/*<Text style={date}>{moment(dt_txt).format("dddd")}</Text>*/}
-        <Text style={date}>{moment(dt_txt).format("HH:mm")}</Text>
-      </View>
+      <Text style={timeStyle}>{moment(dt_txt).format("HH:mm")}</Text>
       <View>
         <RowText
           textValue1={`${Math.round(min)}°C`}
@@ -36,7 +33,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
     borderWidth: 1,
     borderRadius: 10,
@@ -52,12 +49,9 @@ const styles = StyleSheet.create({
   tempMax: {
     color: "#DF1600",
   },
-  date: {
+  timeStyle: {
     color: "#000E2E",
-    fontSize: 18,
-  },
-  dateTextWrapper: {
-    flexDirection: "column",
+    fontSize: 20,
   },
 });
 

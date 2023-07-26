@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ImageBackground,
+  useColorScheme,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import mainStyles from "../styles/MainStyle";
@@ -31,7 +32,6 @@ const CurrentWeather = ({ weatherData }) => {
     main: { temp, feels_like, temp_max, temp_min },
     weather,
   } = weatherData;
-
   const weatherCondition = weather[0]?.main;
 
   return (

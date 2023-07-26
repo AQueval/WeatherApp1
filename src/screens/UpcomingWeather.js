@@ -15,6 +15,7 @@ import "moment/locale/fr";
 moment.locale("fr");
 
 const UpcomingWeather = ({ weatherData }) => {
+  const { dayWrapper, dayText } = styles;
   const groupWeatherDataByDay = (weatherData) => {
     return weatherData.reduce((groupedData, item) => {
       const day = moment(item.dt_txt).format("YYYY-MM-DD");
@@ -36,10 +37,8 @@ const UpcomingWeather = ({ weatherData }) => {
   );
 
   const renderGroup = ({ item }) => (
-    <View>
-      <Text style={styles.dayText}>
-        {moment(item[0].dt_txt).format("dddd")}
-      </Text>
+    <View style={[mainStyles.screenWrapper, dayWrapper]}>
+      <Text style={dayText}>{moment(item[0].dt_txt).format("dddd")}</Text>
       <FlatList
         data={item}
         renderItem={renderItem}
@@ -57,7 +56,7 @@ const UpcomingWeather = ({ weatherData }) => {
           source={require("../../assets/upcoming-background.png")}
           style={mainStyles.imageLayout}
         >
-          <View style={mainStyles.screenWrapper}>
+          <View>
             <FlatList
               data={Object.values(groupedWeatherData)}
               renderItem={renderGroup}
@@ -72,11 +71,14 @@ const UpcomingWeather = ({ weatherData }) => {
 
 const styles = StyleSheet.create({
   dayText: {
-    fontSize: 18,
+    fontSize: 25,
     fontWeight: "bold",
     paddingVertical: 10,
     paddingHorizontal: 16,
     textTransform: "capitalize",
+  },
+  dayWrapper: {
+    marginBottom: 20,
   },
 });
 
