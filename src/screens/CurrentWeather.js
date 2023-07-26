@@ -11,6 +11,10 @@ import mainStyles from "../styles/MainStyle";
 import RowText from "../components/RowText";
 import { weatherType } from "../utilities/WeatherType";
 
+function Capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 const CurrentWeather = ({ weatherData }) => {
   const {
     tempStyle,
@@ -20,6 +24,8 @@ const CurrentWeather = ({ weatherData }) => {
     description,
     message,
     mainIcon,
+    lowStyle,
+    highStyle,
   } = styles;
   const {
     main: { temp, feels_like, temp_max, temp_min },
@@ -54,15 +60,17 @@ const CurrentWeather = ({ weatherData }) => {
               {`Feels like ${Math.round(feels_like)}`}°C
             </Text>
             <RowText
-              textValue1={`High: ${Math.round(temp_max)}°C`}
+              textValue1={`Low: ${Math.round(temp_min)}°C`}
               separatorValue={""}
-              textValue2={`Low: ${Math.round(temp_min)}°C`}
-              text1Style={highLow}
+              textValue2={`High: ${Math.round(temp_max)}°C`}
+              text1Style={[highLow, lowStyle]}
               separatorStyle={highLow}
-              text2Style={highLow}
+              text2Style={[highLow, highStyle]}
             />
             <View style={bodyWrapper}>
-              <Text style={description}>{weather[0]?.description}</Text>
+              <Text style={description}>
+                {Capitalize(weather[0]?.description)}
+              </Text>
               <Text style={message}>
                 {weatherType[weatherCondition]?.message}
               </Text>
@@ -97,6 +105,12 @@ const styles = StyleSheet.create({
   highLow: {
     fontSize: 20,
     color: "#000E2E",
+  },
+  lowStyle: {
+    color: "#003ED0",
+  },
+  highStyle: {
+    color: "#DF1600",
   },
   bodyWrapper: {
     justifyContent: "flex-end",
