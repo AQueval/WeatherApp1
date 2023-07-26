@@ -4,12 +4,29 @@ import {
   ImageBackground,
   SafeAreaView,
   StyleSheet,
+  Text,
   View,
 } from "react-native";
 import ListItem from "../components/ListItem";
 import mainStyles from "../styles/MainStyle";
+import moment from "moment";
+import "moment/locale/fr";
+
+moment.locale("fr");
 
 const UpcomingWeather = ({ weatherData }) => {
+  const { dayWrapper, dayText } = styles;
+  const groupWeatherDataByDay = (weatherData) => {
+    return weatherData.reduce((groupedData, item) => {
+      const day = moment(item.dt_txt).format("YYYY-MM-DD");
+      if (!groupedData[day]) {
+        groupedData[day] = [];
+      }
+      groupedData[day].push(item);
+      return groupedData;
+    }, {});
+  };
+
   const renderItem = ({ item }) => (
     <ListItem
       condition={item.weather[0]?.main}
@@ -18,7 +35,19 @@ const UpcomingWeather = ({ weatherData }) => {
       max={item.main.temp_max}
     />
   );
-  const {} = styles;
+
+  const renderGroup = ({ item }) => (
+    <View style={[mainStyles.screenWrapper, dayWrapper]}>
+      <Text style={dayText}>{moment(item[0].dt_txt).format("dddd")}</Text>
+      <FlatList
+        data={item}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.dt_txt}
+      />
+    </View>
+  );
+
+  const groupedWeatherData = groupWeatherDataByDay(weatherData);
 
   return (
     <SafeAreaView style={mainStyles.wrapper}>
@@ -27,11 +56,11 @@ const UpcomingWeather = ({ weatherData }) => {
           source={require("../../assets/upcoming-background.png")}
           style={mainStyles.imageLayout}
         >
-          <View style={mainStyles.screenWrapper}>
+          <View>
             <FlatList
-              data={weatherData}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.dt_txt}
+              data={Object.values(groupedWeatherData)}
+              renderItem={renderGroup}
+              keyExtractor={(item, index) => index.toString()}
             />
           </View>
         </ImageBackground>
@@ -40,6 +69,17 @@ const UpcomingWeather = ({ weatherData }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  dayText: {
+    fontSize: 25,
+    fontWeight: "bold",
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    textTransform: "capitalize",
+  },
+  dayWrapper: {
+    marginBottom: 20,
+  },
+});
 
 export default UpcomingWeather;
