@@ -7,11 +7,13 @@ import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 import { useGetColorScheme } from "../hooks/useGetColorScheme";
+import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = ({ weather }) => {
   const [colorScheme] = useGetColorScheme();
+  const languagePack = useGetDeviceLanguage()[0];
   const {} = styles;
 
   return (
@@ -30,7 +32,7 @@ const Tabs = ({ weather }) => {
       }}
     >
       <Tab.Screen
-        name={"Current"}
+        name={languagePack["current"]}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -52,7 +54,7 @@ const Tabs = ({ weather }) => {
         {() => <CurrentWeather weatherData={weather.list[0]} />}
       </Tab.Screen>
       <Tab.Screen
-        name={"Upcoming"}
+        name={languagePack["upcoming"]}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
@@ -74,7 +76,7 @@ const Tabs = ({ weather }) => {
         {() => <UpcomingWeather weatherData={weather.list} />}
       </Tab.Screen>
       <Tab.Screen
-        name={"City"}
+        name={languagePack["city"]}
         options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons

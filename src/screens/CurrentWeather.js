@@ -11,6 +11,7 @@ import RowText from "../components/RowText";
 import { weatherType } from "../utilities/WeatherType";
 import mainStyles from "../styles/MainStyles";
 import { useGetColorScheme } from "../hooks/useGetColorScheme";
+import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 
 function Capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -18,6 +19,7 @@ function Capitalize(str) {
 
 const CurrentWeather = ({ weatherData }) => {
   const [colorScheme] = useGetColorScheme();
+  const languagePack = useGetDeviceLanguage()[0];
 
   const mainStylesObj = mainStyles();
   const styles = {
@@ -59,12 +61,13 @@ const CurrentWeather = ({ weatherData }) => {
               {Math.round(temp)}°C
             </Text>
             <Text style={[styles.feels, styles.mainFontStyle]}>
-              {`Feels like ${Math.round(feels_like)}`}°C
+              {languagePack["feelsLike"]}
+              {` ${Math.round(feels_like)}`}°C
             </Text>
             <RowText
-              textValue1={`Low: ${Math.round(temp_min)}°C`}
+              textValue1={`${languagePack["low"]}: ${Math.round(temp_min)}°C`}
               separatorValue={""}
-              textValue2={`High: ${Math.round(temp_max)}°C`}
+              textValue2={`${languagePack["high"]}: ${Math.round(temp_max)}°C`}
               text1Style={[styles.highLow, styles.lowStyle]}
               separatorStyle={styles.highLow}
               text2Style={[styles.highLow, styles.highStyle]}

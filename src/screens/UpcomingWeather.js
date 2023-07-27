@@ -12,8 +12,10 @@ import mainStyles from "../styles/MainStyles";
 import moment from "moment";
 import "moment/locale/fr";
 import { useGetColorScheme } from "../hooks/useGetColorScheme";
+import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 
-moment.locale("fr");
+const deviceLanguage = useGetDeviceLanguage()[1];
+moment.locale(deviceLanguage);
 
 const UpcomingWeather = ({ weatherData }) => {
   const [colorScheme] = useGetColorScheme();

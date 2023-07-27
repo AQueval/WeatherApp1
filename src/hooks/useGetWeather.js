@@ -1,6 +1,7 @@
 import * as Location from "expo-location";
 import React, { useEffect, useState } from "react";
 import { WEATHER_API_KEY } from "@env";
+import { useGetDeviceLanguage } from "./useGetDeviceLanguage";
 
 export const useGetWeather = () => {
   const [loading, setLoading] = useState(true);
@@ -9,10 +10,12 @@ export const useGetWeather = () => {
   const [lat, setLat] = useState([]);
   const [lon, setLon] = useState([]);
 
+  const deviceLanguage = useGetDeviceLanguage()[1];
+
   const fetchWeatherData = async () => {
     try {
       const res = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric&lang=fr`,
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric&lang=${deviceLanguage}`,
       );
       const data = await res.json();
       setWeather(data);
