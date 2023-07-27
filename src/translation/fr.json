@@ -1,0 +1,16 @@
+{
+  "current": "Actuelle",
+  "upcoming": "A venir",
+  "city": "Ville",
+  "feelsLike": "Ressenti",
+  "low": "Min",
+  "high": "Max",
+  "weatherTypeThunderstormMessage": "Il va y avoir du bruit",
+  "weatherTypeDrizzleMessage": "Ca crachine",
+  "weatherTypeRainMessage": "Prenez votre parapluie",
+  "weatherTypeSnowMessage": "Bataille de boules de neige",
+  "weatherTypeClearMessage": "Vitamine D gratuite",
+  "weatherTypeCloudsMessage": "Temps couvert",
+  "weatherTypeHazeMessage": "Légère humidité",
+  "weatherTypeMistMessage": "Attention sur la route"
+}

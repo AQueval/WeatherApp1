@@ -1,0 +1,16 @@
+{
+  "current": "Current",
+  "upcoming": "Upcoming",
+  "city": "City",
+  "feelsLike": "Feels like",
+  "low": "Low",
+  "high": "High",
+  "weatherTypeThunderstormMessage": "It could get noisy",
+  "weatherTypeDrizzleMessage": "This could be worse",
+  "weatherTypeRainMessage": "You will need an umbrella",
+  "weatherTypeSnowMessage": "Let's build a snowman",
+  "weatherTypeClearMessage": "It's perfect t-shirt weather",
+  "weatherTypeCloudsMessage": "You could live in the clouds",
+  "weatherTypeHazeMessage": "It might be a bit damp",
+  "weatherTypeMistMessage": "You can't see me"
+}
