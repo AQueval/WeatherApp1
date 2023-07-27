@@ -8,14 +8,22 @@ import {
   View,
 } from "react-native";
 import ListItem from "../components/ListItem";
-import mainStyles from "../styles/MainStyle";
+import mainStyles from "../styles/MainStyles";
 import moment from "moment";
 import "moment/locale/fr";
+import { useGetColorScheme } from "../hooks/useGetColorScheme";
 
 moment.locale("fr");
 
 const UpcomingWeather = ({ weatherData }) => {
-  const { dayWrapper, dayText } = styles;
+  const [colorScheme] = useGetColorScheme();
+
+  const mainStylesObj = mainStyles();
+  const styles = {
+    ...mainStylesObj,
+    ...additionalStyles,
+  };
+
   const groupWeatherDataByDay = (weatherData) => {
     return weatherData.reduce((groupedData, item) => {
       const day = moment(item.dt_txt).format("YYYY-MM-DD");
@@ -37,8 +45,10 @@ const UpcomingWeather = ({ weatherData }) => {
   );
 
   const renderGroup = ({ item }) => (
-    <View style={[mainStyles.screenWrapper, dayWrapper]}>
-      <Text style={dayText}>{moment(item[0].dt_txt).format("dddd")}</Text>
+    <View style={[styles.screenWrapper, styles.dayWrapper]}>
+      <Text style={styles.dayText}>
+        {moment(item[0].dt_txt).format("dddd")}
+      </Text>
       <FlatList
         data={item}
         renderItem={renderItem}
@@ -50,11 +60,15 @@ const UpcomingWeather = ({ weatherData }) => {
   const groupedWeatherData = groupWeatherDataByDay(weatherData);
 
   return (
-    <SafeAreaView style={mainStyles.wrapper}>
-      <View style={mainStyles.container}>
+    <SafeAreaView style={styles.wrapper}>
+      <View style={styles.container}>
         <ImageBackground
-          source={require("../../assets/upcoming-background.png")}
-          style={mainStyles.imageLayout}
+          source={
+            colorScheme === "dark"
+              ? require("../../assets/upcoming-background-dark.png")
+              : require("../../assets/upcoming-background-light.png")
+          }
+          style={styles.imageLayout}
         >
           <View>
             <FlatList
@@ -69,7 +83,7 @@ const UpcomingWeather = ({ weatherData }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const additionalStyles = StyleSheet.create({
   dayText: {
     fontSize: 25,
     fontWeight: "bold",

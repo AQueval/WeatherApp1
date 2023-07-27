@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from "react-native";
-import mainStyles from "../styles/MainStyle";
+import mainStyles from "../styles/MainStyles";
 
 const Test = () => {
   const { imageLayout, testAlignItems, textStyle } = styles;
@@ -15,7 +15,7 @@ const Test = () => {
     <SafeAreaView style={mainStyles.wrapper}>
       <View style={mainStyles.container}>
         <ImageBackground
-          source={require("../../assets/city-background.png")}
+          source={require("../../assets/city-background-light.png")}
           style={imageLayout}
         >
           <Text style={textStyle}>Lorem ipsum</Text>

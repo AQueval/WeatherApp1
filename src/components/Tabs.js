@@ -6,10 +6,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
+import { useGetColorScheme } from "../hooks/useGetColorScheme";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = ({ weather }) => {
+  const [colorScheme] = useGetColorScheme();
   const {} = styles;
 
   return (
@@ -17,10 +19,10 @@ const Tabs = ({ weather }) => {
       initialRouteName="Current"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#93E4FF",
-        tabBarInactiveTintColor: "#FDF6EF",
+        tabBarActiveTintColor: colorScheme === "dark" ? "#93E4FF" : "#DF1600",
+        tabBarInactiveTintColor: colorScheme === "dark" ? "#FDF6EF" : "#000E2E",
         tabBarStyle: {
-          backgroundColor: "#000E2E",
+          backgroundColor: colorScheme === "dark" ? "#000E2E" : "#FDF6EF",
           paddingTop: 10,
           paddingBottom: 10,
           height: 60,
@@ -34,7 +36,15 @@ const Tabs = ({ weather }) => {
             <Feather
               name="sun"
               size={25}
-              color={focused ? "#93E4FF" : "#FDF6EF"}
+              color={
+                focused
+                  ? colorScheme === "dark"
+                    ? "#93E4FF"
+                    : "#DF1600"
+                  : colorScheme === "dark"
+                  ? "#FDF6EF"
+                  : "#000E2E"
+              }
             />
           ),
         }}
@@ -48,7 +58,15 @@ const Tabs = ({ weather }) => {
             <Feather
               name="calendar"
               size={25}
-              color={focused ? "#48B9FF" : "#FDF6EF"}
+              color={
+                focused
+                  ? colorScheme === "dark"
+                    ? "#93E4FF"
+                    : "#DF1600"
+                  : colorScheme === "dark"
+                  ? "#FDF6EF"
+                  : "#000E2E"
+              }
             />
           ),
         }}
@@ -62,7 +80,15 @@ const Tabs = ({ weather }) => {
             <MaterialCommunityIcons
               name="city-variant-outline"
               size={25}
-              color={focused ? "#48B9FF" : "#FDF6EF"}
+              color={
+                focused
+                  ? colorScheme === "dark"
+                    ? "#93E4FF"
+                    : "#DF1600"
+                  : colorScheme === "dark"
+                  ? "#FDF6EF"
+                  : "#000E2E"
+              }
             />
           ),
         }}
