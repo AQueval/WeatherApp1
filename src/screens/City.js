@@ -7,48 +7,55 @@ import {
   View,
 } from "react-native";
 import IconText from "../components/IconText";
-import mainStyles from "../styles/MainStyle";
+import mainStyles from "../styles/MainStyles";
 import moment from "moment";
+import { useGetColorScheme } from "../hooks/useGetColorScheme";
 
 const City = ({ weatherData }) => {
-  const {
-    nameStyle,
-    cityName,
-    countryName,
-    riseSetWrapper,
-    populationText,
-    riseSetText,
-  } = styles;
+  const [colorScheme] = useGetColorScheme();
+
+  const mainStylesObj = mainStyles();
+  const styles = {
+    ...mainStylesObj,
+    ...additionalStyles,
+  };
+
   const { name, country, population, sunrise, sunset } = weatherData;
 
   return (
-    <SafeAreaView style={mainStyles.wrapper}>
-      <View style={mainStyles.container}>
+    <SafeAreaView style={styles.wrapper}>
+      <View style={styles.container}>
         <ImageBackground
-          source={require("../../assets/city-background.png")}
-          style={mainStyles.imageLayout}
+          source={
+            colorScheme === "dark"
+              ? require("../../assets/city-background-dark.png")
+              : require("../../assets/city-background-light.png")
+          }
+          style={styles.imageLayout}
         >
-          <View style={mainStyles.screenWrapper}>
-            <Text style={[nameStyle, cityName]}>{name}</Text>
-            <Text style={[nameStyle, countryName]}>{country}</Text>
+          <View style={styles.screenWrapper}>
+            <Text style={[styles.nameStyle, styles.cityName]}>{name}</Text>
+            <Text style={[styles.nameStyle, styles.countryName]}>
+              {country}
+            </Text>
             <IconText
               iconName="users"
               iconColor="#000E2E"
               textValue={population}
-              bodyTextStyle={populationText}
+              bodyTextStyle={styles.populationText}
             />
-            <View style={riseSetWrapper}>
+            <View style={styles.riseSetWrapper}>
               <IconText
                 iconName="sunrise"
                 iconColor="#000E2E"
                 textValue={moment.unix(sunrise).format("HH:mm")}
-                bodyTextStyle={riseSetText}
+                bodyTextStyle={styles.riseSetText}
               />
               <IconText
                 iconName="sunset"
                 iconColor="#000E2E"
                 textValue={moment.unix(sunset).format("HH:mm")}
-                bodyTextStyle={riseSetText}
+                bodyTextStyle={styles.riseSetText}
               />
             </View>
           </View>
@@ -58,12 +65,11 @@ const City = ({ weatherData }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const additionalStyles = StyleSheet.create({
   nameStyle: {
     justifyContent: "center",
     alignSelf: "center",
     fontWeight: "bold",
-    color: "#000E2E",
   },
   cityName: {
     fontSize: 40,
@@ -77,11 +83,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   populationText: {
-    color: "#000E2E",
     fontSize: 20,
   },
   riseSetText: {
-    color: "#000E2E",
     fontSize: 20,
   },
 });

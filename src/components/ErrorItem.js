@@ -1,7 +1,7 @@
 import React from "react";
 import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import mainStyles from "../styles/MainStyle";
+import mainStyles from "../styles/MainStyles";
 
 const ErrorItem = () => {
   const { container, errorMessage } = styles;

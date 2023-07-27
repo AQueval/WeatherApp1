@@ -2,12 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./src/components/Tabs";
 import ErrorItem from "./src/components/ErrorItem";
-import {
-  ActivityIndicator,
-  StyleSheet,
-  useColorScheme,
-  View,
-} from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { useGetWeather } from "./src/hooks/useGetWeather";
 
 const App = () => {
