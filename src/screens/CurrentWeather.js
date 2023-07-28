@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  View,
-  Text,
+  ImageBackground,
   SafeAreaView,
   StyleSheet,
-  ImageBackground,
+  Text,
+  View,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import RowText from "../components/RowText";

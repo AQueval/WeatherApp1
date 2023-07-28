@@ -3,9 +3,8 @@ import City from "../screens/City";
 import CurrentWeather from "../screens/CurrentWeather";
 import UpcomingWeather from "../screens/UpcomingWeather";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Feather } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { StyleSheet } from "react-native";
 import { useGetColorScheme } from "../hooks/useGetColorScheme";
 import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 

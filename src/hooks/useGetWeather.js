@@ -9,7 +9,6 @@ export const useGetWeather = () => {
   const [weather, setWeather] = useState([]);
   const [lat, setLat] = useState([]);
   const [lon, setLon] = useState([]);
-
   const deviceLanguage = useGetDeviceLanguage()[1];
 
   const fetchWeatherData = async () => {
