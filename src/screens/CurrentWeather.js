@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  View,
-  Text,
+  ImageBackground,
   SafeAreaView,
   StyleSheet,
-  ImageBackground,
+  Text,
+  View,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import RowText from "../components/RowText";
@@ -13,6 +13,7 @@ import mainStyles from "../styles/MainStyles";
 import { useGetColorScheme } from "../hooks/useGetColorScheme";
 import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 
+// API data formatting.
 function Capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -21,17 +22,20 @@ const CurrentWeather = ({ weatherData }) => {
   const [colorScheme] = useGetColorScheme();
   const languagePack = useGetDeviceLanguage()[0];
 
+  // External global styles + local styles use.
   const mainStylesObj = mainStyles();
   const styles = {
     ...mainStylesObj,
     ...additionalStyles,
   };
 
+  // Get weather data.
   const {
     main: { temp, feels_like, temp_max, temp_min },
     weather,
   } = weatherData;
 
+  // Target weather data for current day.
   const weatherCondition = weather[0]?.main;
 
   return (
@@ -45,12 +49,7 @@ const CurrentWeather = ({ weatherData }) => {
           }
           style={styles.imageLayout}
         >
-          <View
-            style={[
-              styles.screenWrapper,
-              /*{ backgroundColor: weatherType[weatherCondition]?.backgroundColor, },*/
-            ]}
-          >
+          <View style={styles.screenWrapper}>
             <Feather
               name={weatherType[weatherCondition]?.icon}
               size={80}

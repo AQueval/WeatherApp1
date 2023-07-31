@@ -9,9 +9,9 @@ export const useGetWeather = () => {
   const [weather, setWeather] = useState([]);
   const [lat, setLat] = useState([]);
   const [lon, setLon] = useState([]);
-
   const deviceLanguage = useGetDeviceLanguage()[1];
 
+  // API call with variables for location, API key and language.
   const fetchWeatherData = async () => {
     try {
       const res = await fetch(
@@ -28,6 +28,7 @@ export const useGetWeather = () => {
 
   useEffect(() => {
     (async () => {
+      // Request user's authorization to access device location.
       let { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status !== "granted") {
@@ -36,9 +37,9 @@ export const useGetWeather = () => {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-
       setLat(location.coords.latitude);
       setLon(location.coords.longitude);
+
       await fetchWeatherData();
     })();
   }, [lat, lon]);
