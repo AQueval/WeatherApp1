@@ -1,27 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { weatherType } from "../utilities/WeatherType";
 import moment from "moment";
-import RowText from "./RowText";
 
 const ListItem = (props) => {
   const { dt_txt, min, max, condition } = props;
-  const { item, timeStyle, temp, tempMin, tempMax } = styles;
+  const { item, date, temp, tempMin, tempMax, dateTextWrapper } = styles;
 
   return (
     <View style={item}>
       <Feather name={weatherType[condition]?.icon} size={50} color="#000E2E" />
-      <Text style={timeStyle}>{moment(dt_txt).format("HH:mm")}</Text>
+      <View style={dateTextWrapper}>
+        <Text style={date}>{moment(dt_txt).format("dddd")}</Text>
+        <Text style={date}>{moment(dt_txt).format("HH:mm")}</Text>
+      </View>
       <View>
-        <RowText
-          textValue1={`${Math.round(min)}°C`}
-          separatorValue={" / "}
-          textValue2={`${Math.round(max)}°C`}
-          text1Style={[temp, tempMin]}
-          separatorStyle={temp}
-          text2Style={[temp, tempMax]}
-        />
+        <Text style={temp}>{`${Math.round(min)}°C/${Math.round(max)}°C`}</Text>
       </View>
     </View>
   );
@@ -33,7 +28,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     borderWidth: 1,
     borderRadius: 10,
@@ -49,9 +44,12 @@ const styles = StyleSheet.create({
   tempMax: {
     color: "#DF1600",
   },
-  timeStyle: {
+  date: {
     color: "#000E2E",
-    fontSize: 20,
+    fontSize: 18,
+  },
+  dateTextWrapper: {
+    flexDirection: "column",
   },
 });
 

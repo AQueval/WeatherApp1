@@ -1,47 +1,42 @@
-import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
-
-const languagePack = useGetDeviceLanguage()[0];
-
-// Dynamic content and styling depending on weather type returned by API.
 export const weatherType = {
   Thunderstorm: {
     icon: "zap",
-    message: languagePack["weatherTypeThunderstormMessage"],
+    message: "It could get noisy",
     backgroundColor: "#00000030",
   },
   Drizzle: {
     icon: "cloud-rain",
-    message: languagePack["weatherTypeDrizzleMessage"],
+    message: "",
     backgroundColor: "#36454f30",
   },
   Rain: {
     icon: "umbrella",
-    message: languagePack["weatherTypeRainMessage"],
+    message: "You will need an umbrella",
     backgroundColor: "#003ED030",
   },
   Snow: {
     icon: "cloud-snow",
-    message: languagePack["weatherTypeSnowMessage"],
+    message: "Let's build a snowman",
     backgroundColor: "#7f606530",
   },
   Clear: {
     icon: "sun",
-    message: languagePack["weatherTypeClearMessage"],
+    message: "It's perfect t-shirt weather",
     backgroundColor: "#e4720030",
   },
   Clouds: {
     icon: "cloud",
-    message: languagePack["weatherTypeCloudsMessage"],
+    message: "You could live in the clouds",
     backgroundColor: "#36363630",
   },
   Haze: {
     icon: "wind",
-    message: languagePack["weatherTypeHazeMessage"],
+    message: "It might be a bit damp",
     backgroundColor: "#58586e30",
   },
   Mist: {
     icon: "align-justify",
-    message: languagePack["weatherTypeMistMessage"],
+    message: "You can't see me",
     backgroundColor: "#3e3e3730",
   },
 };
