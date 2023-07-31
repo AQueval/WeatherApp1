@@ -3,28 +3,24 @@ import City from "../screens/City";
 import CurrentWeather from "../screens/CurrentWeather";
 import UpcomingWeather from "../screens/UpcomingWeather";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import { useGetColorScheme } from "../hooks/useGetColorScheme";
-import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
+import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StyleSheet, Text, View } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = ({ weather }) => {
-  // Handle device's light or dark theme to adapt app style.
-  const [colorScheme] = useGetColorScheme();
-
-  // Handle device's language to adapt app translation.
-  const languagePack = useGetDeviceLanguage()[0];
+  const {} = styles;
 
   return (
     <Tab.Navigator
       initialRouteName="Current"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: colorScheme === "dark" ? "#93E4FF" : "#DF1600",
-        tabBarInactiveTintColor: colorScheme === "dark" ? "#FDF6EF" : "#000E2E",
+        tabBarActiveTintColor: "#93E4FF",
+        tabBarInactiveTintColor: "#FDF6EF",
         tabBarStyle: {
-          backgroundColor: colorScheme === "dark" ? "#000E2E" : "#FDF6EF",
+          backgroundColor: "#000E2E",
           paddingTop: 10,
           paddingBottom: 10,
           height: 60,
@@ -32,21 +28,13 @@ const Tabs = ({ weather }) => {
       }}
     >
       <Tab.Screen
-        name={languagePack["current"]}
+        name={"Current"}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
               name="sun"
               size={25}
-              color={
-                focused
-                  ? colorScheme === "dark"
-                    ? "#93E4FF"
-                    : "#DF1600"
-                  : colorScheme === "dark"
-                  ? "#FDF6EF"
-                  : "#000E2E"
-              }
+              color={focused ? "#93E4FF" : "#FDF6EF"}
             />
           ),
         }}
@@ -54,21 +42,13 @@ const Tabs = ({ weather }) => {
         {() => <CurrentWeather weatherData={weather.list[0]} />}
       </Tab.Screen>
       <Tab.Screen
-        name={languagePack["upcoming"]}
+        name={"Upcoming"}
         options={{
           tabBarIcon: ({ focused }) => (
             <Feather
               name="calendar"
               size={25}
-              color={
-                focused
-                  ? colorScheme === "dark"
-                    ? "#93E4FF"
-                    : "#DF1600"
-                  : colorScheme === "dark"
-                  ? "#FDF6EF"
-                  : "#000E2E"
-              }
+              color={focused ? "#48B9FF" : "#FDF6EF"}
             />
           ),
         }}
@@ -76,21 +56,13 @@ const Tabs = ({ weather }) => {
         {() => <UpcomingWeather weatherData={weather.list} />}
       </Tab.Screen>
       <Tab.Screen
-        name={languagePack["city"]}
+        name={"City"}
         options={{
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="city-variant-outline"
               size={25}
-              color={
-                focused
-                  ? colorScheme === "dark"
-                    ? "#93E4FF"
-                    : "#DF1600"
-                  : colorScheme === "dark"
-                  ? "#FDF6EF"
-                  : "#000E2E"
-              }
+              color={focused ? "#48B9FF" : "#FDF6EF"}
             />
           ),
         }}
@@ -100,5 +72,7 @@ const Tabs = ({ weather }) => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({});
 
 export default Tabs;
