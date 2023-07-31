@@ -1,66 +1,81 @@
 import React from "react";
 import {
-  View,
-  Text,
+  ImageBackground,
   SafeAreaView,
   StyleSheet,
-  ImageBackground,
+  Text,
+  View,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import mainStyles from "../styles/MainStyle";
 import RowText from "../components/RowText";
 import { weatherType } from "../utilities/WeatherType";
+import mainStyles from "../styles/MainStyles";
+import { useGetColorScheme } from "../hooks/useGetColorScheme";
+import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
+
+// API data formatting.
+function Capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 const CurrentWeather = ({ weatherData }) => {
-  const {
-    tempStyle,
-    feels,
-    highLow,
-    bodyWrapper,
-    description,
-    message,
-    mainIcon,
-  } = styles;
+  const [colorScheme] = useGetColorScheme();
+  const languagePack = useGetDeviceLanguage()[0];
+
+  // External global styles + local styles use.
+  const mainStylesObj = mainStyles();
+  const styles = {
+    ...mainStylesObj,
+    ...additionalStyles,
+  };
+
+  // Get weather data.
   const {
     main: { temp, feels_like, temp_max, temp_min },
     weather,
   } = weatherData;
 
+  // Target weather data for current day.
   const weatherCondition = weather[0]?.main;
 
   return (
-    <SafeAreaView style={mainStyles.wrapper}>
-      <View style={mainStyles.container}>
+    <SafeAreaView style={styles.wrapper}>
+      <View style={styles.container}>
         <ImageBackground
-          source={require("../../assets/current-background-2.jpg")}
-          style={mainStyles.imageLayout}
+          source={
+            colorScheme === "dark"
+              ? require("../../assets/current-background-dark.jpg")
+              : require("../../assets/current-background-light.jpg")
+          }
+          style={styles.imageLayout}
         >
-          <View
-            style={[
-              mainStyles.screenWrapper,
-              {
-                backgroundColor: weatherType[weatherCondition]?.backgroundColor,
-              },
-            ]}
-          >
+          <View style={styles.screenWrapper}>
             <Feather
               name={weatherType[weatherCondition]?.icon}
               size={80}
               color="#000E2E"
-              style={mainIcon}
+              style={[styles.mainIcon, styles.mainFontStyle]}
             />
-            <Text style={tempStyle}>{Math.round(temp)}°C</Text>
-            <Text style={feels}>
-              {`Feels like ${Math.round(feels_like)}`}°C
+            <Text style={[styles.tempStyle, styles.mainFontStyle]}>
+              {Math.round(temp)}°C
+            </Text>
+            <Text style={[styles.feels, styles.mainFontStyle]}>
+              {languagePack["feelsLike"]}
+              {` ${Math.round(feels_like)}`}°C
             </Text>
             <RowText
-              textValue1={`High: ${Math.round(temp_max)}°C`}
-              textValue2={`Low: ${Math.round(temp_min)}°C`}
-              bodyTextStyle={highLow}
+              textValue1={`${languagePack["low"]}: ${Math.round(temp_min)}°C`}
+              separatorValue={""}
+              textValue2={`${languagePack["high"]}: ${Math.round(temp_max)}°C`}
+              text1Style={[styles.highLow, styles.lowStyle]}
+              separatorStyle={styles.highLow}
+              text2Style={[styles.highLow, styles.highStyle]}
             />
-            <View style={bodyWrapper}>
-              <Text style={description}>{weather[0]?.description}</Text>
-              <Text style={message}>
+            <View style={[styles.bodyWrapper]}>
+              <Text style={[styles.description, styles.mainFontStyle]}>
+                {Capitalize(weather[0]?.description)}
+              </Text>
+              <Text style={[styles.message, styles.mainFontStyle]}>
                 {weatherType[weatherCondition]?.message}
               </Text>
             </View>
@@ -71,20 +86,18 @@ const CurrentWeather = ({ weatherData }) => {
   );
 };
 
-const styles = StyleSheet.create({
+const additionalStyles = StyleSheet.create({
   mainIcon: {
     justifyContent: "center",
     alignSelf: "center",
   },
   tempStyle: {
     fontSize: 48,
-    color: "#000E2E",
     justifyContent: "center",
     alignSelf: "center",
   },
   feels: {
     fontSize: 30,
-    color: "#000E2E",
     justifyContent: "center",
     alignSelf: "center",
   },
@@ -93,7 +106,12 @@ const styles = StyleSheet.create({
   },
   highLow: {
     fontSize: 20,
-    color: "#000E2E",
+  },
+  lowStyle: {
+    color: "#003ED0",
+  },
+  highStyle: {
+    color: "#DF1600",
   },
   bodyWrapper: {
     justifyContent: "flex-end",
@@ -101,12 +119,9 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 48,
-    color: "#000E2E",
-    textTransform: "capitalize",
   },
   message: {
     fontSize: 30,
-    color: "#000E2E",
   },
 });
 
