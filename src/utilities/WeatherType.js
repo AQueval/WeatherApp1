@@ -2,6 +2,7 @@ import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 
 const languagePack = useGetDeviceLanguage()[0];
 
+// Dynamic content and styling depending on weather type returned by API.
 export const weatherType = {
   Thunderstorm: {
     icon: "zap",

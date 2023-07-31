@@ -14,6 +14,7 @@ import "moment/locale/fr";
 import { useGetColorScheme } from "../hooks/useGetColorScheme";
 import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 
+// Translation handling including Moment.js for date formatting.
 const deviceLanguage = useGetDeviceLanguage()[1];
 moment.locale(deviceLanguage);
 
@@ -26,6 +27,7 @@ const UpcomingWeather = ({ weatherData }) => {
     ...additionalStyles,
   };
 
+  // Group hourly weather data by day for better readability.
   const groupWeatherDataByDay = (weatherData) => {
     return weatherData.reduce((groupedData, item) => {
       const day = moment(item.dt_txt).format("YYYY-MM-DD");

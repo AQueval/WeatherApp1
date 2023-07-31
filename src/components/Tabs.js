@@ -4,16 +4,17 @@ import CurrentWeather from "../screens/CurrentWeather";
 import UpcomingWeather from "../screens/UpcomingWeather";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
 import { useGetColorScheme } from "../hooks/useGetColorScheme";
 import { useGetDeviceLanguage } from "../hooks/useGetDeviceLanguage";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = ({ weather }) => {
+  // Handle device's light or dark theme to adapt app style.
   const [colorScheme] = useGetColorScheme();
+
+  // Handle device's language to adapt app translation.
   const languagePack = useGetDeviceLanguage()[0];
-  const {} = styles;
 
   return (
     <Tab.Navigator
@@ -99,7 +100,5 @@ const Tabs = ({ weather }) => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default Tabs;

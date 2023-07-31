@@ -9,6 +9,7 @@ const App = () => {
   const { activityIndicatorStyle } = styles;
   const [loading, error, weather] = useGetWeather();
 
+  // Render Tabs only if weather data is available and app isn't loading.
   if (weather && weather.list && !loading) {
     return (
       <NavigationContainer>
@@ -17,6 +18,7 @@ const App = () => {
     );
   }
 
+  // By default, render error message if an error exists. Otherwise render loading animation.
   return (
     <View style={activityIndicatorStyle}>
       {error ? (
