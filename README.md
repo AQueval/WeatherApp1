@@ -14,8 +14,8 @@ for [freeCodeCamp.org](https://www.youtube.com/@freecodecamp) which I then furth
 
 ## Screenshots
 
-![Dark mode screenshot](https://github.com/AQueval/WeatherApp1/blob/dev/docs/weatherapp1-screenshot-dark.jpg?raw=true)
-![Light mode screenshot](https://github.com/AQueval/WeatherApp1/blob/dev/docs/weatherapp1-screenshot-light.jpg?raw=true)
+![Dark mode screenshot](https://github.com/AQueval/WeatherApp1/blob/master/docs/weatherapp1-screenshot-dark.jpg?raw=true)
+![Light mode screenshot](https://github.com/AQueval/WeatherApp1/blob/master/docs/weatherapp1-screenshot-light.jpg?raw=true)
 
 ## Technologies
 
